@@ -101,3 +101,11 @@ public TransformedPicture (Picture source, PixelTransformation xform)
 ```
 
 A TransformedPicture should encapsulate the provided source Picture object and PixelTransformation object. A TransformedPicture object is expected to transform the pixel values of the source frame on demand when getPixel is called using the pixel transformation object provided to the constructor.
+
+# Grading
+
+Submit to the autograder by pushing a "submit" branch to github. 
+* 2 points for Novice
+* 6 points for Adept
+* 2 points for Jedi
+
