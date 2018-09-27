@@ -59,6 +59,6 @@ Create two implementations of Picture as follows.
    
   ![Horizontal Stack Picture Example](http://www.cs.unc.edu/~kmp/comp401fall18/assignments/a3/horiz-stack-example.png "Horizontal Stack Picture Example")
 
-    The constructors should throw an IllegalArgumentException if any of the parameters are null or if the geometry of the objects provided are not compatible (i.e., if the heights of left and right differ for HorizontalStackPicture or if the widths of top and bottom differ for VerticalStackPicture).
+   The constructors should throw an IllegalArgumentException if any of the parameters are null or if the geometry of the objects provided are not compatible (i.e., if the heights of left and right differ for HorizontalStackPicture or if the widths of top and bottom differ for VerticalStackPicture).
    
    
