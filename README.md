@@ -55,7 +55,7 @@ Create two implementations of Picture as follows.
    public VerticalStackPicture(Picture top, Picture bottom)
    ```
    
-  For example, if I have two Picture objects that are 5 pixels tall and 10 pixels wide (call them A and B), and then create a new HorizontalStackPicture object using A as my "left" and B as my "right", then the resulting object will be a Picture object that is 20 pixels wide and 5 pixels tall. In the new object, the upper left pixel at (0,0) will correspond to the pixel at (0,0) in A and the lower right pixel at (19,4) will correspond to the pixel at (9,4) in B. The following picture may help illustrate the situation:
+   For example, if I have two Picture objects that are 5 pixels tall and 10 pixels wide (call them A and B), and then create a new HorizontalStackPicture object using A as my "left" and B as my "right", then the resulting object will be a Picture object that is 20 pixels wide and 5 pixels tall. In the new object, the upper left pixel at (0,0) will correspond to the pixel at (0,0) in A and the lower right pixel at (19,4) will correspond to the pixel at (9,4) in B. The following picture may help illustrate the situation:
   
 ![Horizontal Stack Picture Example](http://www.cs.unc.edu/~kmp/comp401fall18/assignments/a3/horiz-stack-example.png "Horizontal Stack Picture Example")
 
