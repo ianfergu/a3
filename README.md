@@ -50,6 +50,7 @@ Create two implementations of Picture as follows.
    
  * HorizontalStackPicture and VerticalStackPicture
    * These implementations will encapsulate references to two Picture objects and will represent them as if they were a larger Picture object that resulted from "stacking" them either horizontally or vertically. The constructors for these new classes should have the following form:
+   
    ```
    public HorizontalStackPicture(Picture left, Picture right)
    public VerticalStackPicture(Picture top, Picture bottom)
@@ -57,7 +58,7 @@ Create two implementations of Picture as follows.
    
    For example, if I have two Picture objects that are 5 pixels tall and 10 pixels wide (call them A and B), and then create a new HorizontalStackPicture object using A as my "left" and B as my "right", then the resulting object will be a Picture object that is 20 pixels wide and 5 pixels tall. In the new object, the upper left pixel at (0,0) will correspond to the pixel at (0,0) in A and the lower right pixel at (19,4) will correspond to the pixel at (9,4) in B. The following picture may help illustrate the situation:
    
-  [Horizontal Stack Picture Example](http://www.cs.unc.edu/~kmp/comp401fall18/assignments/a3/horiz-stack-example.png "Horizontal Stack Picture Example")
+   ![Horizontal Stack Picture Example](http://www.cs.unc.edu/~kmp/comp401fall18/assignments/a3/horiz-stack-example.png "Horizontal Stack Picture Example")
 
    The constructors should throw an IllegalArgumentException if any of the parameters are null or if the geometry of the objects provided are not compatible (i.e., if the heights of left and right differ for HorizontalStackPicture or if the widths of top and bottom differ for VerticalStackPicture).
    
