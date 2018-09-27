@@ -104,7 +104,7 @@ A TransformedPicture should encapsulate the provided source Picture object and P
 
 # Grading
 
-Submit to the autograder by pushing a "submit" branch to github. 
+Submit to the autograder by pushing a "submit" branch to github. All code should be in the package a3.
 * 2 points for Novice
 * 6 points for Adept
 * 2 points for Jedi
