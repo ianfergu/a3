@@ -88,8 +88,8 @@ public interface Pixel {
 		}
 		
 		double diff_red = other.getRed() - getRed();
-		double diff_green = other.getRed() - getRed();
-		double diff_blue = other.getRed() - getRed();
+		double diff_green = other.getGreen() - getGreen();
+		double diff_blue = other.getBlue() - getBlue();
 		
 		return new ColorPixel(getRed()+(diff_red*factor),
  				getGreen()+(diff_green*factor),	
