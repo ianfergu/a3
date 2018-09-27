@@ -33,6 +33,8 @@ Create two implementations of Picture as follows.
    ```
    public PixelArrayPicture(Pixel[][] pixel_array)
    ```
+   The first dimension of pixel_array is the width and the second is the height. In other words, pixel_array.length will be the width of the picture and pixel_array[0].length will be the height of the picture. The pixel at coordinate (x,y) is located at pixel_array[x][y]. 
+   
  * MonochromePicture
    * MonochromePicture should implement a Picture that has the same value for Pixel in every position. This value is provided to the constructor along with the width and height of the picture. The constructor should have the following form:
    ```
