@@ -62,4 +62,42 @@ Create two implementations of Picture as follows.
 
    The constructors should throw an IllegalArgumentException if any of the parameters are null or if the geometry of the objects provided are not compatible (i.e., if the heights of left and right differ for HorizontalStackPicture or if the widths of top and bottom differ for VerticalStackPicture).
    
-   
+## Jedi
+
+Create an interface called PixelTransformation as follows:
+
+```
+public interface PixelTransformation {
+   Pixel transform(Pixel p);
+}
+```
+
+Now create two implementations of PixelTransformation called: Threshold and GammaCorrect
+
+The constructor for Threshold should have this signature:
+
+```
+public Threshold (double threshold)
+```
+
+The transform method of a Threshold object should produce either a white pixel or a black pixel depending on the intensity (i.e., brightness) of the pixel p passed to it. If p’s brightness is strictly above the threshold value specified in the constructor, then a white pixel is returned. Otherwise, a black pixel is returned.
+
+The constructor for GammaCorrect should have this signature:
+
+```
+public GammaCorrect (double gamma)
+```
+
+The transform method of a GammaCorrect object should produce a "gamma corrected" version of pixel p passed to it. The components (i.e., red, green, and blue) of the gamma corrected pixel are the result of raising them to the (1.0/gamma) power. In other words, if "old" is the original component value in the range from 0.0 to 1.0, then "new" can be calculated as:
+
+```
+new = Math.pow(old, (1.0/gamma));
+```
+
+Create a new implementation of Picture called TransformedPicture. The constructor should have the following signature:
+
+```
+public TransformedPicture (Picture source, PixelTransformation xform)
+```
+
+A TransformedPicture should encapsulate the provided source Picture object and PixelTransformation object. A TransformedPicture object is expected to transform the pixel values of the source frame on demand when getPixel is called using the pixel transformation object provided to the constructor.
