@@ -20,18 +20,25 @@ The Picture interface defines an abstraction for representing a 2-dimensional fr
 
 Read through the code for Picture and be sure you understand what each of the methods is supposed to do. In particular:
 
- * The various forms of the paint method should generally return a new Picture object with the described changes. In other words, a Picture object is expected to be immutable.
+ * Notice that the various forms of the paint method return a Picture object with the required changes if any.  If the underlying implementation of Picture is mutable (i.e., is allowed to change the value of one or more of its fields including element values of arrays), then the return value of these methods will be the original object since that object reflects the change. Getting back the same object that you started with implies that the object was mutated. However, immutable implementations of picture are possible. Such an implementation will need to create a new Picture object that reflects the result of the paint operation and return that new object as the result. Getting back a different object than you started with thus implies immutability and the returned object is also expected to be immutable. 
  * The form of the paint method that paints a region specifies two opposite corners, namely (ax, ay) and (bx, by). Depending on the values of ax, ay, bx, and by these might represent the upper left and lower right corners or these might represent the lower left and upper right corners. Which situation is in effect is determined by the values provided and you should not make any assumptions about which is which.
- * All parameters should be checked for being within their legal values (i.e., coordinates are all non-negative and within the picture's dimensions, pixel values are non-null, factor values are between 0.0 and 1.0, etc.). Any illegal values should result in an IllegalArgumentException. 
+ * All parameters should be checked for being within their legal values (i.e., coordinates are all non-negative and within the picture's dimensions, pixel values are non-null, factor values are between 0.0 and 1.0, etc.). Any illegal values should result in throwing an IllegalArgumentException. 
  
 ## Novice
 
 Create two implementations of Picture as follows.
 
- * PixelArrayPicture
-   * PixelArrayPicture should implement Picture by encapsulating a 2D array of pixels. It should have the following constructor:   
+ * MutablePixelArrayPicture
+   * MutablePixelArrayPicture should implement Picture by encapsulating a 2D array of pixels that are mutable (i.e., allowed to change). It should have the following constructor forms:   
    ```
-   public PixelArrayPicture(Pixel[][] pixel_array)
+   // Creates new object using values provided by pixel_array, matching in size.
+   public MutablePixelArrayPicture(Pixel[][] pixel_array);
+   
+   // Creates new object by providing geometry and initial value for all pixels.
+   public MutablePixelArrayPicture(int width, int height, Pixel initial_value);
+   
+   // Creates new object by providing geometry. Initial value should be medium gray.
+   public MutablePixelArrayPicture(int width, int height);
    ```
    The first dimension of pixel_array is the width and the second is the height. In other words, pixel_array.length will be the width of the picture and pixel_array[0].length will be the height of the picture. The pixel at coordinate (x,y) is located at pixel_array[x][y]. 
    
@@ -40,15 +47,34 @@ Create two implementations of Picture as follows.
    ```
    public MonochromePicture(int width, int height, Pixel value)
    ```
+   MonochromePicture should NOT create and encapsulate an array of Pixel objects. The three values provide to the constructor are the only fields it should need to encapsulate. This kind of Picture is immutable by definition and should create new objects to return as the result of its paint methods.
    
+Submit novice as a branch called 'submit-novice'.
+
  ## Adept
- Create three more implementations of Picture as follows.
+ Create four more implementations of Picture as follows.
+
+ * ImmutablePixelArrayPicture
+   * ImmutablePixelArrayPicture should implement Picture by encapsulating a 2D array of pixels that are immutable (i.e., NOT allowed to change). It should have the following constructor forms:   
+   ```
+   // Creates new object using values provided by pixel_array, matching in size.
+   public ImmutablePixelArrayPicture(Pixel[][] pixel_array);
+   
+   // Creates new object by providing geometry and initial value for all pixels.
+   public ImmutablePixelArrayPicture(int width, int height, Pixel initial_value);
+   
+   // Creates new object by providing geometry. Initial value should be medium gray.
+   public ImmutablePixelArrayPicture(int width, int height);
+   ```
  
  * GradientPicture
-   * GradientPicture should implement a Picture that is a smooth blend of pixel values specified for its four corners. In other words, any pixel in the middle of the picture is a proportional blend of the pixel values associated with its corners in proportion to the distance of the pixel to those corners. The constructor fo GradientPicture should have the form:
+   * GradientPicture should implement a Picture that is a smooth blend of pixel values specified for its four corners. In other words, any pixel in the middle of the picture is a proportional blend of the pixel values associated with its corners inversely proportion to the distance of the pixel to those corners. For example, pixel values along the top row of the picture start off as the specified upper_left value and then become more and more like the upper right corner as you go across (HINT: blend). The constructor of GradientPicture should have the form:
    ```
    public GradientPicture(int width, int height, Pixel upper_left, Pixel upper_right, Pixel lower_left, Pixel lower_right)
    ```
+   Like MonochromePicture, GradientPicture should only need to encapsulate the values of the parameters provided to the constructor and should be immutable once created.
+   
+   When calculating a pixel value in the middle of the picture at (x,y), your best approach is to first calculate the value of the pixel at the beginning of the desired row (i.e., at (0,y)) as the appropriate blend of the upper left and lower left corners. Then calculate the value of the pixel at the end of the row (i.e. at (getWidth()-1,y)). Now calculate the value of (x,y) as the appropriate blend of the beginning and end of the row.
    
  * HorizontalStackPicture and VerticalStackPicture
    * These implementations will encapsulate references to two Picture objects and will represent them as if they were a larger Picture object that resulted from "stacking" them either horizontally or vertically. The constructors for these new classes should have the following form:
@@ -63,6 +89,10 @@ Create two implementations of Picture as follows.
    ![Horizontal Stack Picture Example](http://www.cs.unc.edu/~kmp/comp401fall18/assignments/a3/horiz-stack-example.png "Horizontal Stack Picture Example")
 
    The constructors should throw an IllegalArgumentException if any of the parameters are null or if the geometry of the objects provided are not compatible (i.e., if the heights of left and right differ for HorizontalStackPicture or if the widths of top and bottom differ for VerticalStackPicture).
+   
+   These classes should be implemented as mutable and the value returned from paint should be the original object updated to reflect the appropriate changes.
+
+Submit adept as a branch called 'submit-adept'.
    
 ## Jedi
 
@@ -103,6 +133,16 @@ public TransformedPicture (Picture source, PixelTransformation xform)
 ```
 
 A TransformedPicture should encapsulate the provided source Picture object and PixelTransformation object. A TransformedPicture object is expected to transform the pixel values of the source frame on demand when getPixel is called using the pixel transformation object provided to the constructor.
+
+The implementation of TransformedPicture is expected to be immutable. 
+
+# Hints
+
+Start by trying to implement as many of the methods of the Picture interface as default implementations defined in the interface itself. This will reduce the number of methods you actually need to implement for each type of Picture. 
+
+The easiest way to implement the paint methods any of the immutable picture types is to create a 2D array of pixels, copy all of the pixels from the current object to this new 2D array, make the changes needed for the paint operation, and then return a new ImmutablePixelArray object created from this 2D array.
+
+However, there is a more clever way that involves creating new classes that implement Picture and represent the result of applying a paint operation on a picture object abstractly (i.e., without actually creating a 2D array of pixels with the result). 
 
 # Grading
 
