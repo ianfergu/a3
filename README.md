@@ -20,8 +20,8 @@ The Picture interface defines an abstraction for representing a 2-dimensional fr
 
 Read through the code for Picture and be sure you understand what each of the methods is supposed to do. In particular:
 
- * Notice that the various forms of the paint method return a Picture object with the required changes if any.  If the underlying implementation of Picture is mutable (i.e., is allowed to change the value of one or more of its fields including element values of arrays), then the return value of these methods will be the original object since that object reflects the change. Getting back the same object that you started with implies that the object was mutated. However, immutable implementations of picture are possible. Such an implementation will need to create a new Picture object that reflects the result of the paint operation and return that new object as the result. Getting back a different object than you started with thus implies immutability and the returned object is also expected to be immutable. 
- * The form of the paint method that paints a region specifies two opposite corners, namely (ax, ay) and (bx, by). Depending on the values of ax, ay, bx, and by these might represent the upper left and lower right corners or these might represent the lower left and upper right corners. Which situation is in effect is determined by the values provided and you should not make any assumptions about which is which.
+ * Notice that the various forms of the paint method return a Picture object with the required changes if any.  If the underlying implementation of Picture is mutable (i.e., is allowed to change the value of one or more of its fields including element values of arrays), then the return value of these methods will be the original object since that object reflects the change. Getting back the same object that you started with implies that the object was mutated. However, immutable implementations of picture are possible. Such an implementation will need to create a new Picture object that reflects the result of the paint operation and return that new object as the result. Getting back a different object than you started with thus implies immutability. For this assignment, the resulting object returned as a result of a paint method is allowed to be either mutable or immutable. This will come up again later. 
+ * The form of the paint method that paints a region specifies two opposite corners, namely (ax, ay) and (bx, by). Depending on the values of ax, ay, bx, and by these might represent the upper left and lower right corners or these might represent the lower left and upper right corners. Which situation is in effect is determined by the values provided and you should not make any assumptions about which corner will be which when the method is called. 
  * All parameters should be checked for being within their legal values (i.e., coordinates are all non-negative and within the picture's dimensions, pixel values are non-null, factor values are between 0.0 and 1.0, etc.). Any illegal values should result in throwing an IllegalArgumentException. 
  
 ## Novice
@@ -31,13 +31,14 @@ Create two implementations of Picture as follows.
  * MutablePixelArrayPicture
    * MutablePixelArrayPicture should implement Picture by encapsulating a 2D array of pixels that are mutable (i.e., allowed to change). It should have the following constructor forms:   
    ```
-   // Creates new object using values provided by pixel_array, matching in size.
+   // Creates new object using values provided by pixel_array, matching in size. 
    public MutablePixelArrayPicture(Pixel[][] pixel_array);
    
-   // Creates new object by providing geometry and initial value for all pixels.
+   // Creates new object by providing geometry of picture and an initial value for all pixels.
    public MutablePixelArrayPicture(int width, int height, Pixel initial_value);
    
-   // Creates new object by providing geometry. Initial value should be medium gray.
+   // Creates new object by providing geometry of picture. 
+   // Initial value of all pixels should be medium gray (i.e., a grayscale pixel with intensity 0.5)
    public MutablePixelArrayPicture(int width, int height);
    ```
    The first dimension of pixel_array is the width and the second is the height. In other words, pixel_array.length will be the width of the picture and pixel_array[0].length will be the height of the picture. The pixel at coordinate (x,y) is located at pixel_array[x][y]. 
@@ -68,7 +69,7 @@ Submit novice as a branch called 'submit-novice'.
    ```
  
  * GradientPicture
-   * GradientPicture should implement a Picture that is a smooth blend of pixel values specified for its four corners. In other words, any pixel in the middle of the picture is a proportional blend of the pixel values associated with its corners inversely proportion to the distance of the pixel to those corners. For example, pixel values along the top row of the picture start off as the specified upper_left value and then become more and more like the upper right corner as you go across (HINT: blend). The constructor of GradientPicture should have the form:
+   * GradientPicture should implement a Picture that is a smooth blend of pixel values specified for its four corners. In other words, any pixel in the middle of the picture is a proportional blend of the pixel values associated with its corners. The blend is inversely proportional to the distance of the pixel to those corners. For example, pixel values along the top row of the picture start off as the specified upper_left value and then become more and more like the upper_right value as you go across (HINT: use the blend method of Pixel). The constructor of GradientPicture should have the form:
    ```
    public GradientPicture(int width, int height, Pixel upper_left, Pixel upper_right, Pixel lower_left, Pixel lower_right)
    ```
@@ -140,9 +141,9 @@ The implementation of TransformedPicture is expected to be immutable.
 
 Start by trying to implement as many of the methods of the Picture interface as default implementations defined in the interface itself. This will reduce the number of methods you actually need to implement for each type of Picture. 
 
-The easiest way to implement the paint methods any of the immutable picture types is to create a 2D array of pixels, copy all of the pixels from the current object to this new 2D array, make the changes needed for the paint operation, and then return a new ImmutablePixelArray object created from this 2D array.
+The easiest way to implement the paint methods any of the immutable picture types is to create a 2D array of pixels, copy all of the pixels from the current object to this new 2D array, make the changes needed for the paint operation, and then return a new MutablePixelArrayPicture object created from this 2D array. With this approach, the first paint operation on any immutable implementation will require copying everything into a new mutable implementation, any subsequent paint operations will not since the mutable implementation can make changes directly.
 
-However, there is a more clever way that involves creating new classes that implement Picture and represent the result of applying a paint operation on a picture object abstractly (i.e., without actually creating a 2D array of pixels with the result). 
+However, there is another approach for immutable picture types that involves creating new classes that implement Picture which represent the result of applying a particular paint operation on a picture object without actually changing any pixels or creating a 2D array of pixels for a new object. In fact, in this approach the resulting objects returned by the paint methods are themselves also immutable. This approach makes the paint operations very efficient computationally at the cost of having to do more work when the values of the pixels are retrieved (i.e., getPixel() becomes less efficient). In terms of memory, this alternate approach may or may not use less memory depending on the overall number and type of paint operations that occur. I'm purposefully not describing this approach in more detail to leave it as an exercise to the student. I recommend completing the assignment the easy way first and then if you are up to it, thinking about how this alternate approach might work and trying to implement it.
 
 # Grading
 
