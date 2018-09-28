@@ -43,7 +43,13 @@ public interface Picture {
 
 	// paint(int cx, int cy, double radius, Pixel p) sets all pixels in the
 	// picture that are within radius distance of the coordinate (cx, cy) to the
-	// Pixel value p.  Only positive values of radius should be allowed. 
+	// Pixel value p.  Only positive values of radius should be allowed. Any
+	// value of cx and cy should be allowed (even if negative or otherwise
+	// outside of the boundaries of the frame). 
+	
+	// Calculate the distance of a particular (x,y) position to (cx,cy) with
+	// the expression: Math.sqrt((x-cx)*(x-cx)+(y-cy)*(y-cy))	
+
 	// The second form with factor, blends as previously described.
 	
 	public Picture paint(int cx, int cy, double radius, Pixel p);
