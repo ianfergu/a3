@@ -147,7 +147,6 @@ However, there is another approach for immutable picture types that involves cre
 
 # Grading
 
-Submit to the autograder by pushing a "submit" branch to github. All code should be in the package a3.
 * 2 points for Novice
 * 6 points for Adept
 * 2 points for Jedi
