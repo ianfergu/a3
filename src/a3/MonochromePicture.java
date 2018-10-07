@@ -21,8 +21,8 @@ public class MonochromePicture implements Picture {
 		MutablePixelArrayPicture frog = new MutablePixelArrayPicture(width, height, value);
 		if (ax > 0 && bx < width) {
 			if (ay > 0 && by < height) {
-				for (int x = ax; x < bx; x++) {
-					for (int y = ay; y < by; y++) {
+				for (int x = ax; x <= bx; x++) {
+					for (int y = ay; y <= by; y++) {
 						frog.paint(x, y, p);
 					}
 				}
@@ -39,8 +39,8 @@ public class MonochromePicture implements Picture {
 		MutablePixelArrayPicture frog = new MutablePixelArrayPicture(width, height, value);
 		if (ax > 0 && bx < width) {
 			if (ay > 0 && by < height) {
-				for (int x = ax; x < bx; x++) {
-					for (int y = ay; y < by; y++) {
+				for (int x = ax; x <= bx; x++) {
+					for (int y = ay; y <= by; y++) {
 						frog.paint(x, y, p, factor);
 					}
 				}
@@ -118,31 +118,33 @@ public class MonochromePicture implements Picture {
 	@Override
 	public Picture paint(int x, int y, Pixel p) {
 		// checking to see if it is in bounds
-		if (x > 0 || x < width) {
-			if (y > 0 || y < height) {
-				pixel_array[x][y] = p;
+		MutablePixelArrayPicture frog = new MutablePixelArrayPicture(width, height, value);
+		if (x >= 0 || x < width) {
+			if (y >= 0 || y < height) {
+				frog.pixel_array[x][y] = p;
 			} else {
 				throw new IllegalArgumentException("Too large or small");
 			}
 		} else {
 			throw new IllegalArgumentException("Too large or small");
 		}
-		return this;
+		return frog;
 	}
 
 	@Override
 	public Picture paint(int x, int y, Pixel p, double factor) {
 		// checking to see if it is in bounds
-		if (x > 0 && x < width) {
-			if (y > 0 && y < height) {
-				pixel_array[x][y].blend(p, factor);
+		MutablePixelArrayPicture frog = new MutablePixelArrayPicture(width, height, value);
+		if (x >= 0 && x < width) {
+			if (y >= 0 && y < height) {
+				frog.pixel_array[x][y].blend(p, factor);
 			} else {
 				throw new IllegalArgumentException("Too large or small");
 			}
 		} else {
 			throw new IllegalArgumentException("Too large or small");
 		}
-		return this;
+		return frog;
 	}
 
 	public Pixel[][] helper(int x, int y, Pixel p) {
