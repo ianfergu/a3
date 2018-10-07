@@ -1,0 +1,104 @@
+Grading script log:
+
+Looking for package: a3
+Found a3 directory: ./src/a3
+cwd: /var/www/grade1/comp401fall18/repos/a3-ianfergu/5ad5febb2f70e4cfb72e1985c8b895611700943f/src/a3
+Cmd: /usr/bin/javac -d /var/www/grade1/comp401fall18/repos/a3-ianfergu/5ad5febb2f70e4cfb72e1985c8b895611700943f/bin -cp /var/www/grade1/comp401fall18/repos/a3-ianfergu/5ad5febb2f70e4cfb72e1985c8b895611700943f/bin:/var/www/grade1/comp401fall18/junit/* *.java
+...successful.
+--------------------------------------------------
+Testing A3 Novice
+
+Running a3test.A3NoviceGrader
+testMutableArrayPictureConstructor2dPixelArray
+... successful +0.05
+testMutableArrayPictureConstructorGeometry
+... successful +0.05
+testMutableArrayPictureGetters
+... successful +0.05
+testMutableArrayPicturePaintMethod
+... successful +0.05
+testMonochromePictureConstructor
+... successful +0.05
+testMonochromePictureGetters
+... successful +0.05
+testMutablePixelArrayInitializedCorrectly
+... successful +0.05
+testMutablePixelArrayGrayScaleInitializedCorrectly
+... successful +0.05
+testIllegalArgumentExceptionForGetPixel
+... successful +0.05
+testMutablePixelArrayPicturePaintOnePixel
+... successful +0.2
+testMonochromPicturePaintOnePixel
+... successful +0.2
+testMutablePixelArrayPicturePaintRectangle
+... successful +0.2
+testMonochromPicturePaintRectangle
+... successful +0.2
+testMutablePixelArrayPicturePaintCircle
+... successful +0.2
+testMonochromePicturePaintCircle
+... successful +0.2
+testPartialOverlapPaintRectangle
+... successful +0.17500000000000002
+testPartialOverlapPaintCircle
+... successful +0.17500000000000002
+Score: 2.00
+
+--------------------------------------------------
+Testing A3 Adept
+
+Running a3test.A3AdeptGrader
+testImmutableArrayPictureConstructor2dPixelArray
+... successful +0.25
+testImmutableArrayPictureConstructorGeometry
+... successful +0.25
+testImmutableArrayPictureGetters
+... successful +0.25
+testImmutableArrayPicturePaintMethod
+... successful +0.25
+testGradientPictureConstructor
+... successful +0.25
+testGradientPictureGetters
+... successful +0.25
+testGradientPicturePaintMethod
+... successful +0.25
+testHorizontalStackPictureConstructor
+... successful +0.25
+testHorizontalStackPictureGetters
+... successful +0.25
+testHorizontalStackPicturePaintMethod
+... successful +0.25
+testVerticalStackPictureConstructor
+... successful +0.25
+testVerticalStackPictureGetters
+... successful +0.25
+testVerticalStackPicturePaintMethod
+... successful +0.25
+testImmutablePixelArrayPicturePaintOnePixel
+... failed.
+testGradientPicturePaintOnePixel
+... successful +0.5
+testHorizontalStackPicturePaintOnePixel
+... successful +0.5
+testVerticalStackPicturePaintOnePixel
+... successful +0.5
+testGradientPicture
+... successful +0.75
+Score: 5.50
+
+--------------------------------------------------
+Testing A3 Jedi
+
+Running a3test.A3JediGrader
+testGamma
+... successful +0.5
+testThreshold
+... successful +0.5
+testTransformedPicture
+... successful +1.0
+Score: 2.00
+
+============================
+
+Total Score: 9.5
