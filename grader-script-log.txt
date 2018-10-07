@@ -1,0 +1,104 @@
+Grading script log:
+
+Looking for package: a3
+Found a3 directory: ./src/a3
+cwd: /var/www/grade1/comp401fall18/repos/a3-ianfergu/dfaa40770c9f9017592476a610a275c9720cde27/src/a3
+Cmd: /usr/bin/javac -d /var/www/grade1/comp401fall18/repos/a3-ianfergu/dfaa40770c9f9017592476a610a275c9720cde27/bin -cp /var/www/grade1/comp401fall18/repos/a3-ianfergu/dfaa40770c9f9017592476a610a275c9720cde27/bin:/var/www/grade1/comp401fall18/junit/* *.java
+...successful.
+--------------------------------------------------
+Testing A3 Novice
+
+Running a3test.A3NoviceGrader
+testMutableArrayPictureConstructor2dPixelArray
+... successful +0.05
+testMutableArrayPictureConstructorGeometry
+... successful +0.05
+testMutableArrayPictureGetters
+... successful +0.05
+testMutableArrayPicturePaintMethod
+... successful +0.05
+testMonochromePictureConstructor
+... successful +0.05
+testMonochromePictureGetters
+... successful +0.05
+testMutablePixelArrayInitializedCorrectly
+... successful +0.05
+testMutablePixelArrayGrayScaleInitializedCorrectly
+... successful +0.05
+testIllegalArgumentExceptionForGetPixel
+... successful +0.05
+testMutablePixelArrayPicturePaintOnePixel
+... successful +0.2
+testMonochromPicturePaintOnePixel
+... successful +0.2
+testMutablePixelArrayPicturePaintRectangle
+... successful +0.2
+testMonochromPicturePaintRectangle
+... successful +0.2
+testMutablePixelArrayPicturePaintCircle
+... successful +0.2
+testMonochromePicturePaintCircle
+... successful +0.2
+testPartialOverlapPaintRectangle
+... successful +0.17500000000000002
+testPartialOverlapPaintCircle
+... successful +0.17500000000000002
+Score: 2.00
+
+--------------------------------------------------
+Testing A3 Adept
+
+Running a3test.A3AdeptGrader
+testImmutableArrayPictureConstructor2dPixelArray
+... failed.
+testImmutableArrayPictureConstructorGeometry
+... failed.
+testImmutableArrayPictureGetters
+... failed.
+testImmutableArrayPicturePaintMethod
+... failed.
+testGradientPictureConstructor
+... failed.
+testGradientPictureGetters
+... failed.
+testGradientPicturePaintMethod
+... failed.
+testHorizontalStackPictureConstructor
+... failed.
+testHorizontalStackPictureGetters
+... failed.
+testHorizontalStackPicturePaintMethod
+... failed.
+testVerticalStackPictureConstructor
+... failed.
+testVerticalStackPictureGetters
+... failed.
+testVerticalStackPicturePaintMethod
+... failed.
+testImmutablePixelArrayPicturePaintOnePixel
+... failed.
+testGradientPicturePaintOnePixel
+... failed.
+testHorizontalStackPicturePaintOnePixel
+... failed.
+testVerticalStackPicturePaintOnePixel
+... failed.
+testGradientPicture
+... failed.
+Score: 0.00
+
+--------------------------------------------------
+Testing A3 Jedi
+
+Running a3test.A3JediGrader
+testGamma
+... failed.
+testThreshold
+... failed.
+testTransformedPicture
+... failed.
+Score: 0.00
+
+============================
+
+Total Score: 2.0
