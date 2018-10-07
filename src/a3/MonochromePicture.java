@@ -53,7 +53,7 @@ public class MonochromePicture implements Picture {
 		return frog;
 	}
 
-	@Override
+	
 	public Picture paint(int cx, int cy, double radius, Pixel p) {
 		MutablePixelArrayPicture frog = new MutablePixelArrayPicture(width, height, value);
 		if (radius > 0.0) {
@@ -73,7 +73,7 @@ public class MonochromePicture implements Picture {
 		return frog;
 	}
 
-	@Override
+
 	public Picture paint(int cx, int cy, double radius, Pixel p, double factor) {
 		MutablePixelArrayPicture frog = new MutablePixelArrayPicture(width, height, value);
 		if (radius > 0.0) {
@@ -115,7 +115,7 @@ public class MonochromePicture implements Picture {
 		}
 	}
 
-	@Override
+	
 	public Picture paint(int x, int y, Pixel p) {
 		// checking to see if it is in bounds
 		MutablePixelArrayPicture frog = new MutablePixelArrayPicture(width, height, value);
@@ -131,7 +131,7 @@ public class MonochromePicture implements Picture {
 		return frog;
 	}
 
-	@Override
+
 	public Picture paint(int x, int y, Pixel p, double factor) {
 		// checking to see if it is in bounds
 		MutablePixelArrayPicture frog = new MutablePixelArrayPicture(width, height, value);
