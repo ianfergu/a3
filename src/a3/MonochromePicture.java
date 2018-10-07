@@ -19,8 +19,8 @@ public class MonochromePicture implements Picture {
 
 	public Picture paint(int ax, int ay, int bx, int by, Pixel p) {
 		MutablePixelArrayPicture frog = new MutablePixelArrayPicture(width, height, value);
-		if (ax > 0 && bx < width) {
-			if (ay > 0 && by < height) {
+		if (ax >= 0 && bx < width) {
+			if (ay >= 0 && by < height) {
 				for (int x = ax; x <= bx; x++) {
 					for (int y = ay; y <= by; y++) {
 						frog.paint(x, y, p);
