@@ -25,13 +25,26 @@ public class MutablePixelArrayPicture implements Picture {
 		}
 
 		for (int x = 0; x < width; x++) {
-			if (pixel_array[x].length != height || pixel_array[x] == null) {
+			if (pixel_array[x] == null) {
 				throw new IllegalArgumentException();
 			} else {
 				continue;
 			}
 		}
-	
+
+		for (int x = 0; x < width; x++) {
+			if (pixel_array[x].length != height) {
+				throw new IllegalArgumentException();
+			} else {
+				for (int y = 0; y < height; y++) {
+					if (pixel_array[x][y] == null) {
+						throw new IllegalArgumentException();
+					} else {
+						continue;
+					}
+				}
+			}
+		}
 	}
 
 	public MutablePixelArrayPicture(int width, int height, Pixel initial_value) {
