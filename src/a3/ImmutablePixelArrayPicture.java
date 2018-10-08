@@ -190,10 +190,11 @@ public class ImmutablePixelArrayPicture implements Picture {
 
 	public Picture paint(int x, int y, Pixel p) {
 		// checking to see if it is in bounds
-		MutablePixelArrayPicture frog = new MutablePixelArrayPicture(pixel_array.clone());
+	
+		MutablePixelArrayPicture frog = new MutablePixelArrayPicture(clonePixelArray(pixel_array));
 		if (x >= 0 && x < width) {
 			if (y >= 0 && y < height) {
-				frog.pixel_array[x][y] = p;
+				frog.paint(x, y, p);
 			} else {
 				throw new IllegalArgumentException("Too large or small");
 			}
@@ -206,7 +207,7 @@ public class ImmutablePixelArrayPicture implements Picture {
 
 	public Picture paint(int x, int y, Pixel p, double factor) {
 		// checking to see if it is in bounds
-		MutablePixelArrayPicture frog = new MutablePixelArrayPicture(width, height);
+		MutablePixelArrayPicture frog = new MutablePixelArrayPicture(clonePixelArray(pixel_array));
 		if (x >= 0 && x < width) {
 			if (y >= 0 && y < height) {
 				frog.pixel_array[x][y].blend(p, factor);
@@ -228,6 +229,15 @@ public class ImmutablePixelArrayPicture implements Picture {
 		} 
 		return frog;
 	}
+	
+	private Pixel[][] clonePixelArray(Pixel[][] pixel_array) {
+		Pixel[][] new_pixel_array = new Pixel[pixel_array.length][];
+		for (int i=0; i<pixel_array.length; i++) {
+			new_pixel_array[i] = pixel_array[i].clone();
+		}
+		return new_pixel_array;
+	}
+	
 }
 	
 	
